@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 深拷贝拷贝多层, 每一级别的数据都会拷贝.
+        var obj = {
+            id: 1,
+            name: 'andy',
+            msg: {
+                age: 18
+            },
+            color: ['pink', 'red']
+        };
+        var o = {};
+        // 封装函数 
+        //深拷贝，另外开辟一个空间，不是只拷贝地址
+        function deepCopy(target,source){
+            for (const k in source) {
+              //判断是否是数组
+              if(source[k] instanceof Array){
+                target[k]=[];
+                deepCopy(target[k],source[k]);
+                // 判断是否为对象
+              }else if(source[k] instanceof Object){
+                target[k]={};
+                deepCopy(target[k],source[k]);
+              }else{
+                target[k]=source[k];
+              }
+            }
+            
+        }
+        deepCopy(o,obj)
+        console.log(o);
+       
+    </script>
+</body>
+
+</html>
